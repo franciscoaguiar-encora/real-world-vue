@@ -1,10 +1,16 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { inject } from 'vue'
+
+const GStore = inject('GStore')
 // import HelloWorld from './components/HelloWorld.vue'
 </script>
 
 <template>
   <div id="layout">
+    <div id="flashMessage" v-if="GStore.flashMessage">
+      {{ GStore.flashMessage }}
+    </div>
     <header>
       <div class="wrapper">
         <!-- <HelloWorld msg="You did it!" /> -->
@@ -43,5 +49,19 @@ h2 {
 
 h1 {
   font-size: 20px;
+}
+
+@keyframes yellowfade {
+  from {
+    background: yellow;
+  }
+  to {
+    background: transparent;
+  }
+}
+
+#flashMessage {
+  animation-name: yellowfade;
+  animation-duration: 3s;
 }
 </style>
